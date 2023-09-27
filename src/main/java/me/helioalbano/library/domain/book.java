@@ -9,6 +9,10 @@ public class Book {
         setTitle(title);
     }
 
+    public Book(final String title) {
+        this(null, title);
+    }
+
     private void setTitle(final String title) {
         if (title == null) {
             throw new IllegalArgumentException("Book title cannot be null");
