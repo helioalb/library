@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import me.helioalbano.library.domain.Book;
+import me.helioalbano.library.domain.book.Book;
 import me.helioalbano.library.repository.BookRepository;
 
 public class BookRepositoryInMemory implements BookRepository {

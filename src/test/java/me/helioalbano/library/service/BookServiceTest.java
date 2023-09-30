@@ -8,7 +8,8 @@ import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Test;
 
-import me.helioalbano.library.domain.Book;
+import me.helioalbano.library.domain.book.Book;
+import me.helioalbano.library.domain.book.Title;
 import me.helioalbano.library.repository.BookRepository;
 
 public class BookServiceTest {
@@ -17,7 +18,7 @@ public class BookServiceTest {
     void givenAValidBookWhenCreatingThenReturnsItsId() {
         var bookRepository = mock(BookRepository.class);
         var bookService = new BookService(bookRepository);
-        var validBook = new Book(1L, "Entendendo Algoritmos");
+        var validBook = new Book(1L, new Title("Entendendo Algoritmos"));
         when(bookRepository.save(any(Book.class))).thenReturn(validBook);
 
         var bookId = bookService.createBook("Entendendo Algoritmos");

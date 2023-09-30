@@ -1,6 +1,7 @@
 package me.helioalbano.library.service;
 
-import me.helioalbano.library.domain.Book;
+import me.helioalbano.library.domain.book.Book;
+import me.helioalbano.library.domain.book.Title;
 import me.helioalbano.library.repository.BookRepository;
 
 public class BookService {
@@ -11,7 +12,7 @@ public class BookService {
     }
 
     public Long createBook(String title) {
-        var newBook = new Book(title);
+        var newBook = new Book(new Title(title));
         var savedBook = bookRepository.save(newBook);
 
         return savedBook.getId();

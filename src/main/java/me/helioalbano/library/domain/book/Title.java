@@ -1,16 +1,10 @@
-package me.helioalbano.library.domain;
+package me.helioalbano.library.domain.book;
 
-public class Book {
-    private Long id;
+public class Title {
     private String title;
 
-    public Book(final Long id, final String title) {
-        this.id = id;
+    public Title(final String title) {
         setTitle(title);
-    }
-
-    public Book(final String title) {
-        this(null, title);
     }
 
     private void setTitle(final String title) {
@@ -30,11 +24,8 @@ public class Book {
         this.title = title;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getTitle() {
+    @Override
+    public String toString() {
         return title;
     }
 }
