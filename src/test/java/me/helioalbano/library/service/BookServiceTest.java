@@ -35,7 +35,4 @@ public class BookServiceTest {
         assertThrows(IllegalArgumentException.class,
             () -> bookService.createBook(null));
     }
-    // valid book
-    // invalid book (null title)
-
 }
