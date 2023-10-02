@@ -32,4 +32,10 @@ public class TitleTest {
         assertEquals("Book title cannot be greater than 100", exception.getMessage());
     }
 
+    @Test
+    void givenATitleWithSpacesAtStartAndEndWhenCreatingItThenRemoveThoseSpaces() {
+        var title = new Title("    The book  ");
+
+        assertEquals("The book", title.toString());
+    }
 }

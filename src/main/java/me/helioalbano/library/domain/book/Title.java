@@ -21,7 +21,7 @@ public class Title {
                 "Book title cannot be greater than 100");
         }
 
-        this.title = title;
+        this.title = title.trim();
     }
 
     @Override
