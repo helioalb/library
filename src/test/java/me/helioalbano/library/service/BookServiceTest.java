@@ -2,6 +2,7 @@ package me.helioalbano.library.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -14,7 +15,6 @@ import org.junit.jupiter.api.Test;
 import me.helioalbano.library.domain.book.Book;
 import me.helioalbano.library.domain.book.Title;
 import me.helioalbano.library.repository.BookRepository;
-import me.helioalbano.library.service.exception.BookNotFoundException;
 
 public class BookServiceTest {
     private BookRepository bookRepository;
@@ -50,8 +50,9 @@ public class BookServiceTest {
         var bookId = 1L;
         when(bookRepository.findById(bookId)).thenReturn(Optional.empty());
 
-        assertThrows(BookNotFoundException.class,
-            () -> bookService.getBookById(bookId));
+        var book = bookService.findBookById(bookId);
+
+        assertTrue(book.isEmpty());
     }
 
     @Test
@@ -61,7 +62,7 @@ public class BookServiceTest {
         var book = new Book(bookId, new Title(title));
         when(bookRepository.findById(bookId)).thenReturn(Optional.of(book));
 
-        var recoveredBook = bookService.getBookById(bookId);
+        var recoveredBook = bookService.findBookById(bookId).get();
 
         assertEquals(title, recoveredBook.getTitle().toString());
     }
