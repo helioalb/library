@@ -10,11 +10,15 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import me.helioalbano.library.domain.book.Book;
+import me.helioalbano.library.domain.book.Title;
 import me.helioalbano.library.entrypoint.rest.dto.CreateBookRequest;
 import me.helioalbano.library.service.BookService;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import java.util.Optional;
 
 import org.hamcrest.core.Is;
 
@@ -92,5 +96,29 @@ public class BooksControllerTest {
         mockMvc.perform(mockRequest)
             .andExpect(status().isCreated())
             .andExpect(header().string("Location", "/books/1"));
-        }
+    }
+
+    @Test
+    void givenAnInvalidBookIdWhenShowingItThenReturnStatusNotFound() throws Exception {
+        var mockRequest = MockMvcRequestBuilders.get("/books/999")
+            .contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON);
+        when(bookService.findBookById(999L)).thenReturn(Optional.empty());
+
+        mockMvc.perform(mockRequest)
+            .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void givenAValidBookIdWhenShowingItThenReturnABook() throws Exception {
+        var mockRequest = MockMvcRequestBuilders.get("/books/1")
+            .contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON);
+        var book = new Book(1L, new Title("Entendendo Algoritmos"));
+        when(bookService.findBookById(1L)).thenReturn(Optional.of(book));
+
+        mockMvc.perform(mockRequest)
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.title", Is.is("Entendendo Algoritmos")));
+    }
 }
