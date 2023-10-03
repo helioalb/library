@@ -25,7 +25,7 @@ public class Author {
         return id;
     }
 
-    public Name getName() {
+    public Name name() {
         return name;
     }
 }
