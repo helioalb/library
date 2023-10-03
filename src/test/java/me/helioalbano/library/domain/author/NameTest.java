@@ -54,8 +54,4 @@ public class NameTest {
 
         assertEquals("Machado de Assis", name.toString());
     }
-
-
-
-    // Não pode ser maior que 100
 }
