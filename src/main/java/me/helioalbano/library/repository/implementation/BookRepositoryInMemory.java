@@ -14,7 +14,7 @@ public class BookRepositoryInMemory implements BookRepository {
 
     @Override
     public Book save(Book book) {
-        Long id = book.getId();
+        Long id = book.id();
 
         if (id == null) {
             id = (long) (books.size() + 1);

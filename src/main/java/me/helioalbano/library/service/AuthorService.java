@@ -17,7 +17,7 @@ public class AuthorService {
         var newAuthor = new Author(new Name(fullName));
         var savedAuthor = authorRepository.save(newAuthor);
 
-        return savedAuthor.getId();
+        return savedAuthor.id();
     }
 
     public Optional<Author> findAuthorById(Long id) {
