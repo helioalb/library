@@ -1,5 +1,7 @@
 package me.helioalbano.library.service;
 
+import java.util.Optional;
+
 import me.helioalbano.library.domain.author.Author;
 import me.helioalbano.library.domain.author.Name;
 import me.helioalbano.library.repository.AuthorRepository;
@@ -16,5 +18,9 @@ public class AuthorService {
         var savedAuthor = authorRepository.save(newAuthor);
 
         return savedAuthor.getId();
+    }
+
+    public Optional<Author> findAuthorById(Long id) {
+        return authorRepository.findById(id);
     }
 }

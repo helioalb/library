@@ -6,6 +6,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.Optional;
+
 import org.hamcrest.core.Is;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 
+import me.helioalbano.library.domain.author.Author;
+import me.helioalbano.library.domain.author.Name;
 import me.helioalbano.library.entrypoint.rest.dto.CreateAuthorRequest;
 import me.helioalbano.library.service.AuthorService;
 
@@ -97,5 +101,29 @@ public class AuthorsControllerTest {
         mockMvc.perform(mockRequest)
                 .andExpect(status().isCreated())
                 .andExpect(header().string("Location", "/authors/1"));
+    }
+
+    @Test
+    void givenAnInvalidAuthorIdWhenShowingItThenReturnStatusNotFound() throws Exception {
+        var mockRequest = MockMvcRequestBuilders.get("/authors/999")
+            .contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON);
+        when(authorService.findAuthorById(999L)).thenReturn(Optional.empty());
+
+        mockMvc.perform(mockRequest)
+            .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void givenAValidAuthorIdWhenShowingItThenReturnAnAuthor() throws Exception {
+        var mockRequest = MockMvcRequestBuilders.get("/authors/1")
+            .contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON);
+        var author = new Author(1L, new Name("David Thomas"));
+        when(authorService.findAuthorById(1L)).thenReturn(Optional.of(author));
+
+        mockMvc.perform(mockRequest)
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.full_name", Is.is("David Thomas")));
     }
 }
