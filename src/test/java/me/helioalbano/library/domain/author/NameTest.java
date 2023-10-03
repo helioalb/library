@@ -45,13 +45,13 @@ public class NameTest {
     void givenANameWithSpacesInFrontAndAtTheAndWhenCreatingThenRemoveThoseSpaces() {
         var name = new Name("   Fulano  ");
 
-        assertEquals("Fulano", name.toString());
+        assertEquals("Fulano", name.full());
     }
 
     @Test
     void givenAValidNameWhenCreatingThenCreate() {
         var name = new Name("Machado de Assis");
 
-        assertEquals("Machado de Assis", name.toString());
+        assertEquals("Machado de Assis", name.full());
     }
 }

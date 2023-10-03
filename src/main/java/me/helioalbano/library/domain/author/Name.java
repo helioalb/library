@@ -20,8 +20,7 @@ public class Name {
         this.name = name.trim();
     }
 
-    @Override
-    public String toString() {
+    public String full() {
         return name;
     }
 }

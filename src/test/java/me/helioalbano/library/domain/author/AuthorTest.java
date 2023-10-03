@@ -19,6 +19,6 @@ public class AuthorTest {
     void givenAValidAuthorWhenCreatingThenCreateIt() {
         var author = new Author(new Name("Machado de Assis"));
 
-        assertEquals("Machado de Assis", author.name().toString());
+        assertEquals("Machado de Assis", author.fullName());
     }
 }

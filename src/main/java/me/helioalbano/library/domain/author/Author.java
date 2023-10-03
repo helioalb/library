@@ -25,7 +25,7 @@ public class Author {
         return id;
     }
 
-    public Name name() {
-        return name;
+    public String fullName() {
+        return name.full();
     }
 }
