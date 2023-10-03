@@ -1,4 +1,4 @@
-package me.helioalbano.library.infra.repository;
+package me.helioalbano.library.repository.implementation;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;

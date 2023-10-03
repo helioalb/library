@@ -1,4 +1,4 @@
-package me.helioalbano.library.infra.repository;
+package me.helioalbano.library.repository.implementation;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
