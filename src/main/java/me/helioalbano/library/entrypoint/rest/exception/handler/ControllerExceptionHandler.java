@@ -25,7 +25,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
         ex.getBindingResult().getAllErrors().forEach(error -> {
             String fieldName = ((FieldError) error).getField();
             String message = error.getDefaultMessage();
-            errors.put(fieldName, message);
+            errors.put(fieldName.replaceAll("([a-z])([A-Z]+)", "$1_$2").toLowerCase(), message);
         });
 
         return ResponseEntity.badRequest()
