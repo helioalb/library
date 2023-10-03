@@ -45,6 +45,6 @@ public class BooksController {
     }
 
     private BookResponse buildBookResponse(Book book) {
-        return new BookResponse(book.getTitle().toString());
+        return new BookResponse(book.title());
     }
 }

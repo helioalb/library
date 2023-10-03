@@ -17,7 +17,7 @@ public class BookRepositoryInMemoryTest {
 
         var savedBook = repository.save(newBook);
 
-        assertEquals("Código Limpo", savedBook.getTitle().toString());
+        assertEquals("Código Limpo", savedBook.title());
         assertTrue(repository.findById(savedBook.getId()).isPresent());
     }
 
@@ -28,7 +28,7 @@ public class BookRepositoryInMemoryTest {
 
         var savedBook = repository.save(existentBook);
 
-        assertEquals("Código Limpo", savedBook.getTitle().toString());
+        assertEquals("Código Limpo", savedBook.title());
         assertTrue(repository.findById(savedBook.getId()).isPresent());
     }
 }

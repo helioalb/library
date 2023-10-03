@@ -17,6 +17,6 @@ public class BookTest {
     @Test
     void givenAValidBookWhenInstantiatingItThenCreateANewInstance() {
         var book = new Book(null, new Title("The clean code"));
-        assertEquals("The clean code", book.getTitle().toString());
+        assertEquals("The clean code", book.title());
     }
 }

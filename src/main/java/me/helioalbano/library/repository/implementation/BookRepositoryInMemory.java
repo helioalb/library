@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import me.helioalbano.library.domain.book.Book;
+import me.helioalbano.library.domain.book.Title;
 import me.helioalbano.library.repository.BookRepository;
 
 public class BookRepositoryInMemory implements BookRepository {
@@ -19,7 +20,7 @@ public class BookRepositoryInMemory implements BookRepository {
             id = (long) (books.size() + 1);
         }
 
-        books.put(id, new Book(id, book.getTitle()));
+        books.put(id, new Book(id, new Title(book.title())));
         return books.get(id);
     }
 

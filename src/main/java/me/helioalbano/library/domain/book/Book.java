@@ -25,7 +25,7 @@ public class Book {
         return id;
     }
 
-    public Title getTitle() {
-        return title;
+    public String title() {
+        return title.toString();
     }
 }

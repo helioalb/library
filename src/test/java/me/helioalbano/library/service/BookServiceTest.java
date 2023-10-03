@@ -64,6 +64,6 @@ public class BookServiceTest {
 
         var recoveredBook = bookService.findBookById(bookId).get();
 
-        assertEquals(title, recoveredBook.getTitle().toString());
+        assertEquals(title, recoveredBook.title());
     }
 }
