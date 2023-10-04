@@ -17,7 +17,7 @@ public class BookService {
         var newBook = new Book(new Title(title));
         var savedBook = bookRepository.save(newBook);
 
-        return savedBook.getId();
+        return savedBook.id();
     }
 
     public Optional<Book> findBookById(Long id) {

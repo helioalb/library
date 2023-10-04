@@ -18,7 +18,7 @@ public class AuthorRepositoryInMemoryTest {
         var savedAuthor = repository.save(newAuthor);
 
         assertEquals("Machado de Assis", savedAuthor.fullName());
-        assertTrue(repository.findById(savedAuthor.getId()).isPresent());
+        assertTrue(repository.findById(savedAuthor.id()).isPresent());
     }
 
     @Test
@@ -29,6 +29,6 @@ public class AuthorRepositoryInMemoryTest {
         var savedAuthor = repository.save(existentAuthor);
 
         assertEquals("Machado de Assis", savedAuthor.fullName());
-        assertTrue(repository.findById(savedAuthor.getId()).isPresent());
+        assertTrue(repository.findById(savedAuthor.id()).isPresent());
     }
 }

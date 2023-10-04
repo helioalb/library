@@ -13,7 +13,7 @@ public class AuthorRepositoryInMemory implements AuthorRepository {
 
     @Override
     public Author save(Author author) {
-        Long id = author.getId();
+        Long id = author.id();
 
         if (id == null) {
             id = (long) (authors.size() + 1);
